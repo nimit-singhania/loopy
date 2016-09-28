@@ -1,0 +1,8 @@
+affine(Equal, { [i, k] -> [i, i, k] } )
+affine(Norm, { [i, j] -> [i, j, j] } )
+affine(Sqrt, { [i, 0] -> [i, i, i] } )
+realign(Less, Norm, 3)
+realign(Norm, Equal, 3)
+realign(Equal, Sqrt, 3)
+L = lift(Less, 3)
+affine(L, { [i, j, k] -> [i1, j1, k1, i2, j2, k2]: i1 = [i/128] and i2 = i%128 and j1 = [j/128] and j2 = j%128 and k1 = [k/128] and k2 = k%128} )

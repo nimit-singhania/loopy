@@ -1,0 +1,7 @@
+realign(Init, Mult, 2)
+affine(Mult, { [r, q, p, s] -> [r, q, s, p] } )
+affine(Mult, { [r, q, s, p] -> [r, q, s1, p1, s2, p2]: p1 = [p/64] and p2 = p%64 and s1 = [s/64] and s2 = s%64  } )
+//affine(Mult, { [i, j, k] -> [i1, j1, k1, i2, j2, k2]: i1 = [i/128] and i2 = i%128 and j1 = [j/128] and j2 = j%128 and k1 = [k/128] and k2 = k%128 } )
+//realign(Left, Right, 0)
+//affine(Sum, { [i, j, k] -> [i, k, j] } )
+//affine(Sum, { [i, j, k] -> [i1, j1, k1, i2, j2, k2]: i1 = [i/128] and i2 = i%128 and j1 = [j/128] and j2 = j%128 and k1 = [k/128] and k2 = k%128 } )

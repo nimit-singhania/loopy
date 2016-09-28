@@ -1,0 +1,17 @@
+Running tests:
+--------------
+
+To execute Loopy on a program 
+       sh run-loopy.sh <LLVM_BUILD_DIR> <PROGRAM_FILE> <OPTIMIZATION_SCRIPT>
+       (ex: sh run-loopy.sh ../llvm/build prog.c opt.t)
+
+To execute all Polybench tests,
+       sh run-all-tests.sh <LLVM_BUILD_DIR>
+       (ex: sh run-all-tests.sh ../llvm/build)
+
+To execute a specific Polybench test,
+       sh run-polybench-test.sh <LLVM_BUILD_DIR> <TEST_FILE>
+       (ex: sh run-polybench-test.sh ../llvm/build polybench-c-4.1/linear-alegbra/blas/gemm/gemm)
+
+To clean-up, 
+       sh clean-up.sh

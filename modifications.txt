@@ -1,0 +1,19 @@
+We list here the modifications that we made to Polly while building Loopy and the affected/added source files:
+
+1. A pass named PiecewiseAffineTransform has been added to the set of transformations. 
+   - lib/Transform/PiecewiseAffineTransform.cpp
+
+2. We built a parser to read in the transformation script.
+   - include/polly/OptParser.h
+   - lib/OptParser/
+
+3. We modified Polly's scop detection procedure to generate canonical schedules and extract loop-components from the source file.
+   - include/ScopInfo.h 
+   --- declared LoopDomainMap and printLoopDomainMap()
+
+   - lib/Analysis/ScopInfo.cpp 
+   --- modified Scop::Scop() and Scop::buildScop() functions to also construct LoopDomainMap
+   --- commented out dropConstantScheduleDims() in Scop::buildScop() to get a canonical schedule representation
+
+4. We required two functions isl_set_sum and isl_map_sum from ISL. These functions were supported by ISL, but hidden from outside world. We changed their visibility.
+   - lib/External/isl/include/isl/map.h

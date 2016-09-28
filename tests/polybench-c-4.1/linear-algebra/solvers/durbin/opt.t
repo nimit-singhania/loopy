@@ -1,0 +1,6 @@
+//affine(sum, {[k, i] -> [k, -i]})
+//affine(compY, {[k, i] -> [k, -i]})
+//(L1, L2) = isplit(compZ, {[k, i]: i < k/2}, 1)
+//affine(L2, {[k, i] -> [k, k - i]})
+//realign(L1, L2, 2)
+//affine(compZ, {[k, i] -> [k, -i]})
