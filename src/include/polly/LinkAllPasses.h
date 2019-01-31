@@ -43,7 +43,7 @@ llvm::Pass *createIslAstInfoPass();
 llvm::Pass *createCodeGenerationPass();
 llvm::Pass *createIslScheduleOptimizerPass();
 llvm::Pass *createTempScopInfoPass();
-llvm::Pass *createAffineTransformPass();
+/* llvm::Pass *createAffineTransformPass(); */
 llvm::Pass *createPiecewiseAffineTransformPass();
 
 extern char &IndependentBlocksID;
@@ -77,7 +77,7 @@ struct PollyForcePassLinking {
     polly::createCodeGenerationPass();
     polly::createIslScheduleOptimizerPass();
     polly::createTempScopInfoPass();
-    polly::createAffineTransformPass();
+    /* polly::createAffineTransformPass(); */
     polly::createPiecewiseAffineTransformPass();
   }
 } PollyForcePassLinking; // Force link by creating a global definition.
