@@ -32,10 +32,22 @@ setup:
 
 # install LLVM, require specific version
 get_llvm: setup
-	svn co -r 241394 http://llvm.org/svn/llvm-project/llvm/trunk ${LLVM_DIR}/trunk
+	wget https://releases.llvm.org/3.7.0/llvm-3.7.0.src.tar.xz
+	mkdir -p ${LLVM_DIR}/trunk
+	cd ${LLVM_DIR}/trunk
+	tar -xvf llvm-3.7.0.src.tar.xz
+	mv llvm-3.7.0/* ./
+	rm llvm-3.7.0
+	cd ../../
 
 get_clang: setup
-	 svn co -r 241394 http://llvm.org/svn/llvm-project/cfe/trunk ${LLVM_DIR}/trunk/tools/clang
+	wget https://releases.llvm.org/3.7.0/cfe-3.7.0.src.tar.xz
+	mkdir -p ${LLVM_DIR}/trunk/tools/clang
+	cd ${LLVM_DIR}/trunk/tools/clang
+	tar -xvf cfe-3.7.0.src.tar.xz
+	mv cfe-3.7.0/* ./
+	rm -rf cfe-3.7.0
+	cd ../../../
 
 # copy Loopy code
 get_loopy: setup
