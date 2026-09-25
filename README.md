@@ -1,5 +1,5 @@
 # Loopy
-Loopy is a system for programming loop transformations. Current practice is either to manually rewrite loops, which can be tedious and error prone, or apply automatic optimizations built into a compiler, which have varying performance benefits. Loopy occupies a middle ground: programmers specify a sequence of transformations in a source-level script, which is then interpreted fully automatically to generate the transformed program. While other such systems exist, the key distinguishing features of Loopy are:
+Loopy is a system for programming loop transformations. Current practice is either to manually rewrite loops, which can be tedious and error prone, or apply automatic optimizations built into a compiler, which have varying performance benefits. Loopy occupies a middle ground: programmers specify a sequence of transformations in a source-level script, which is then verified and implemented automatically to generate a transformed program. While other such systems exist, the key distinguishing features of Loopy are:
 
 1. Transformations are specified at source-level, which makes it easy for a programmer to describe and reason about the transformation.
 
@@ -7,13 +7,9 @@ Loopy is a system for programming loop transformations. Current practice is eith
 
 Loopy is designed as an interpreter which extends Polly, a polyhedral library for LLVM. It reads in each operation of the transformation script and applies that on a polyhedral model of the program. Finally, it checks whether all program dependencies from the old model are preserved in the new model, and generates the new code only if this condition is met. 
 
-## Thanks!
-   Loopy is built by extending the Polly and ISL libraries. We are deeply grateful to the authors of these libraries, it would have been a far more difficult task to implement Loopy otherwise.  
-
-   This work was supported, in part, by DARPA under agreement number FA8750-12-C-0166. The U.S. Government is authorized to reproduce and distribute reprints for Governmental purposes notwithstanding any copyright notation thereon. The views and conclusions contained herein are those of the authors and should not be interpreted as necessarily representing the official policies or endorsements, either expressed or implied, of DARPA or the U.S. Government.  
 
 
-##Example
+## Example
 As an example, consider the following matrix multiplication program:
 ```c
 for (i = 0; i < N; i++) {
@@ -71,6 +67,10 @@ Loopy is described in more detail in:
 
 * K.S. Namjoshi, N. Singhania. *Loopy: Programmable and Formally Verified Loop Transformations*. Static Analysis Symposium (SAS), 2016
 
+## Thanks!
+   Loopy is built by extending the Polly and ISL libraries. We are deeply grateful to the authors of these libraries, it would have been a far more difficult task to implement Loopy otherwise.  
+
+   This work was supported, in part, by DARPA under agreement number FA8750-12-C-0166. The U.S. Government is authorized to reproduce and distribute reprints for Governmental purposes notwithstanding any copyright notation thereon. The views and conclusions contained herein are those of the authors and should not be interpreted as necessarily representing the official policies or endorsements, either expressed or implied, of DARPA or the U.S. Government.  
 
 ## The tool [Loo.py](https://mathema.tician.de/software/loopy/) generates OpenCL/CUDA code from descriptions of computations
 
