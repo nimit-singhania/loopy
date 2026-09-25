@@ -7,14 +7,14 @@
 ROOT_DIR=/home/loopy
 
 # Number of processors to run make on 
-PAR_BUILD=2
+PAR_BUILD=1
 
 
 # =========================== Derived =========================== 
 # LLVM root directory
 LLVM_DIR=${ROOT_DIR}/llvm
 LLVM_BUILD_DIR=${LLVM_DIR}/build
-CLANG_DIR ${ROOT_DIR}/clang
+CLANG_DIR=${ROOT_DIR}/clang
 CLANG_BUILD_DIR=${CLANG_DIR}/build
 
 # Loopy source directory
