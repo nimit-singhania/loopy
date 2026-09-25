@@ -14,6 +14,8 @@ PAR_BUILD=2
 # LLVM root directory
 LLVM_DIR=${ROOT_DIR}/llvm
 LLVM_BUILD_DIR=${LLVM_DIR}/build
+CLANG_DIR ${ROOT_DIR}/clang
+CLANG_BUILD_DIR=${CLANG_DIR}/build
 
 # Loopy source directory
 SRC_DIR=${ROOT_DIR}/src
@@ -29,25 +31,19 @@ all: setup get_llvm get_loopy get_clang build
 setup: 
 	mkdir -p ${LLVM_DIR}
 	mkdir -p ${LLVM_DIR}/build
+	mkdir -p ${CLANG_DIR}
+	mkdir -p ${CLANG_DIR}/build
 
 # install LLVM, require specific version
 get_llvm: setup
 	wget https://releases.llvm.org/3.7.0/llvm-3.7.0.src.tar.xz
-	mkdir -p ${LLVM_DIR}/trunk
-	cd ${LLVM_DIR}/trunk
 	tar -xvf llvm-3.7.0.src.tar.xz
-	mv llvm-3.7.0/* ./
-	rm llvm-3.7.0
-	cd ../../
+	mv llvm-3.7.0.src/ ${LLVM_DIR}/trunk
 
 get_clang: setup
 	wget https://releases.llvm.org/3.7.0/cfe-3.7.0.src.tar.xz
-	mkdir -p ${LLVM_DIR}/trunk/tools/clang
-	cd ${LLVM_DIR}/trunk/tools/clang
 	tar -xvf cfe-3.7.0.src.tar.xz
-	mv cfe-3.7.0/* ./
-	rm -rf cfe-3.7.0
-	cd ../../../
+	mv cfe-3.7.0.src ${CLANG_DIR}/trunk
 
 # copy Loopy code
 get_loopy: setup
@@ -56,6 +52,7 @@ get_loopy: setup
 # build LLVM + loopy
 build: setup get_loopy get_clang get_llvm 
 	(cd ${LLVM_BUILD_DIR}; cmake -G 'Unix Makefiles' -DCMAKE_INSTALL_PREFIX=${LLVM_DIR} ${LLVM_DIR}/trunk; make -j ${PAR_BUILD})
+	(cd ${CLANG_BUILD_DIR}; cmake -G 'Unix Makefiles' -DCMAKE_INSTALL_PREFIX=${LLVM_DIR} ${CLANG_DIR}/trunk; make -j ${PAR_BUILD})
 
 
 # =========================== Test =========================== 
